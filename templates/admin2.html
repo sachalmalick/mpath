@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mpath</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
+
+	  
+	  
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/open-iconic-bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/css/magnific-popup.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='ionicons.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	  
+
+  </head>
+  <body>
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span>Mpath.</span></a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="home"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="about"><span>Create Account</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="team"><span>Search Account</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="blog"><span>View Accounts</span></a></li>
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    
+    <section class=" js-fullheight" style = "background-color:#d67738;.avoid-clicks {pointer-events: auto;}"  data-section="home">
+      <div class="overlay"></div>
+      <div class="container">
+		  <br><br><br><br><br><br><br><br>
+		  	<h2>Create New Account</h2>
+		  	<h4>{{neworgmsg}}</h4>
+		  	{% if neworgmsg == 'successfully created' %}
+		  		<h5><a href = "./manageaccount?id={{account_num}}">View Account</a></h5>
+		  	{%endif%}
+			<form method = "post" action ="/newacct" enctype=multipart/form-data class="request-form ftco-animate">
+			<div class="form-group">
+				<input name = "fullname" type="text" class="form-control" placeholder="Full Name">
+			</div>
+
+			<div class="form-group">
+				<label for="exampleFormControlFile1" style = "color : white">Profile Pic</label>
+				<input type="file" class="form-control-file btn btn-tertiary" id="file" name="file">
+			</div>
+
+			<div class="form-group">
+				<textarea name="bio" id="" cols="30" rows="2" class="form-control" placeholder="Bio"></textarea>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create Account" class="btn btn-secondary py-3 px-4">
+			</div>
+			</form>
+		</div>
+		
+
+    </section>
+		
+
+    <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="section-counter" data-section="about">
+    	<div class="container">
+    		<div class="row d-flex">
+    			<div class="col-md-6 col-lg-4 d-flex">
+    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(images/about.jpg);">
+    					<div class="request-quote py-5">
+	    					<div class="py-2">
+	    						<h3>Lookup Account</h3>
+	    					</div>
+	    					<form action="#" class="request-form ftco-animate">
+			    				<div class="form-group">
+			    					<input type="text" class="form-control" placeholder="First Name">
+			    				</div>
+			    				<div class="form-group">
+			    					<input type="text" class="form-control" placeholder="Last Name">
+			    				</div>
+		    					<div class="form-group">
+			    					<input type="text" class="form-control" placeholder="Account number">
+			    				</div>
+			            <div class="form-group">
+			              <input type="submit" value="Lookup" class="btn btn-secondary py-3 px-4">
+			            </div>
+			    			</form>
+	    				</div>
+    				</div>
+    			</div>
+    			<div class="col-md-6 col-lg-8 pl-lg-5 py-5">
+    				<div class="row justify-content-start pb-3">
+		          <div class="col-md-12 heading-section ftco-animate">
+		          	
+			  <img class="block-20" width = "400%" height = "400%">
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading">Name</h3>
+                <p>Bio</p>
+                <div class="d-flex align-items-center mt-4 meta">
+	                <p class="mb-0"><a href="#" class="btn btn-secondary">View Account <span class="ion-ios-arrow-round-forward"></span></a></p>
+                </div>
+              </div>
+            </div>
+					  
+		          </div>
+		        </div>
+		    		
+	        </div>
+        </div>
+	 </section>
+
+    <section class="ftco-section bg-light" data-section="blog">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2 class="mb-4">View all accounts</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+		  {% for account in accounts %}
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <img class="block-20" src='../static/img/pfp/{{account[
+"account_num"]}}' width = "100px"/>
+				
+				
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="single.html">{{account["full_name"]}}</a></h3>
+                <p>{{account["bio"]}}</p>
+                <div class="d-flex align-items-center mt-4 meta">
+	                <p class="mb-0"><a href="./manageaccount?id={{account['account_num']}}" class="btn btn-secondary">View Account <span class="ion-ios-arrow-round-forward"></span></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       	{% endfor %}
+		
+        </div>
+      </div>
+    </section>
+
+
+
+    <footer class="ftco-footer ftco-section">
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;Sachal Malick <script>document.write(new Date().getFullYear());</script> All rights reserved
+          </div>
+        </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.animateNumber.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/scrollax.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/google-map.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+
+  </body>
+</html>

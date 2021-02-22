@@ -1,0 +1,35 @@
+admin:
+
+create new account:
+
+name
+picture
+bio.
+generate code.
+
+___generate unique identifier and place it with link in qr code.
+
+
+
+user:
+scan and donate.
+
+
+to do:
+
+-admin UI.
+-payment backend (paypal)
+	-for demo, just send to my buffalo account, but tag.
+-payment UI.
+
+
+EENJqgjUxuiOX9WgmYfpVQ-Dtd_WbJLv1tbZ2CuOroraf-G0MaX9_QBUvt-_mywEDNq56ngeXROWxhyL
+
+pip install:
+flask
+requests_oauthlib
+
+
+-admin search/view accounts.
+-admin log withdrawl
+-preset amount buttons and venmo button

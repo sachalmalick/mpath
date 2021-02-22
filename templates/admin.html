@@ -1,0 +1,90 @@
+<html>
+	<body>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+		<script>
+		
+		function viewAccount() {
+			var id = document.getElementById("accountidinput").value;
+			$.post("/viewaccount",
+			  {
+				id : id,
+			  },
+			function(data, status){
+				if(data === "NOT FOUND") {
+					document.getElementById("viewacctmessage").innerHTML = "account not found";
+				}
+				else {
+					var acct = JSON.parse(data);
+					document.getElementById("accountview").innerHTML = "<img width='50px' height='50px' src = '../static/img/pfp/" + acct["account_num"] + "' /><br>Account Holder: " + acct['full_name'] + " <br><a href = './manageaccount?id=" + acct["account_num"] + "'>Manage Account</a>";
+				}
+			});
+		}
+		</script>
+		
+	<div class="container">
+		  <div class="row justify-content-center">
+			<div class="col-4">
+				<h3>Create an Account</h3>
+				{{neworgmsg}}
+				<form method = "post" action ="/newacct" enctype=multipart/form-data>
+					Full name: <input name = "fullname" type = "text" /> <br>
+					Bio: <input name = "bio" type = "text" /> <br>
+					Profile pic: <input type=file name=file > <br>
+					<input type=submit value=Create> <br>
+
+				</form>
+			</div>
+		  </div>
+	</div>
+		
+	<div class="container">
+		  <div class="row justify-content-center">
+			<div class="col-4">
+				<h3>Search Account</h3>
+				<div id="viewacctmessage">
+				</div>
+				Acccount id: <input type = "text" id = "accountidinput" />
+				<button onclick = "viewAccount()">View</button>
+			</div>
+		  </div>
+	</div>
+		
+		
+	<div class="container">
+	<div class="row justify-content-center">
+	<div class="col-4">
+
+		<div id = "accountview">
+		
+		</div>
+		
+		<h3>All accounts</h3>
+		<table>
+		<tr>
+			<th>PFP</th>
+			<th>Name</th>
+			<th>Account Number</th>
+		</tr>
+		{% for account in accounts %}
+			<tr>
+				<td>
+					<img width="50px" height="50px" src = '../static/img/pfp/{{account[
+"account_num"]}}' />
+				</td>
+				<td>
+				{{account["full_name"]}}
+				</td>
+				<td>
+				<a href = './manageaccount?id={{account["account_num"]}}'>{{account["account_num"]}}</a>
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		
+		</div>
+		</div>
+		</div>
+	</body>
+</html>

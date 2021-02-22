@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mpath</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
+
+	  
+	  
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/open-iconic-bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/css/magnific-popup.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='ionicons.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	  
+
+	  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+		<script>
+		
+		function logWithdrawl() {
+			var amount = document.getElementById("amount").value;
+			$.post("/logwithdrawl",
+			  {
+				account_id : '{{acctnum}}',
+				amount : amount
+			  },
+			function(data, status){
+				if(data === "success") {
+					location.reload();
+				}
+				else {
+					document.getElementById("withdraw_message").innerHTML = data;
+				}
+			});
+		}
+		</script>
+  </head>
+  <body>
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span>Mpath.</span></a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="home"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="about"><span>Account Summary</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="projects"><span>Make Withdrawl</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="team"><span>All Transactions</span></a></li>
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    
+    <section class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-section="home">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-md-8 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{account['full_name']}}</h1>
+            <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{account['bio']}}</p>
+          	
+			</div> 
+			
+			<div class="col-md-4 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+			<img src = "../static/img/pfp/{{account['account_num']}}" width = "500px"/>
+          
+			</div>
+        </div>
+      </div>
+    </section>
+		
+	      <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="section-counter" data-section="about">
+<div class="container">
+    		<div class="row d-flex">
+
+ <div class="col-md-12 heading-section ftco-animate" align="center">
+	 				<h3 class="mb-4">QR Code</h3>
+	 				<img src = "../static/img/codes/{{acctnum}}.jpg"/>
+	 				<h3 class="mb-4">Account Summary</h3>
+
+		          	<span class="subheading">Balance: {{orders["balance"]}}</span>
+		          	<span class="subheading">Total Donated: {{orders["donated"]}}</span>
+		          	<span class="subheading">Total Withdrawn: {{orders["withdrawn"]}}</span>
+		          	<span class="subheading">Still pending: {{orders["pending"]}}</span>
+		          	<span class="subheading">Other: {{orders["other"]}}</span>
+					  
+		          </div>
+	 <div class="col-md-12">
+    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(images/about.jpg);">
+    					<div class="request-quote py-5">
+	    					<div class="py-2">
+								<h5><div id = "withdraw_message"></div></h5>
+	    						<h3>Make Withdrawl</h3>
+	    					</div>
+					<div class="request-form ftco-animate">
+						
+						<div class="form-group">
+							<input type = "number" min = "0.01" step = "0.01" id = "amount" type = "text" /><br>
+						</div>
+						<div class="form-group">
+							<button type="submit" value="Withdraw" class="btn btn-secondary py-3 px-4"  onclick = "logWithdrawl()">Withdraw</button>
+						</div>
+					</div>
+	    				</div>
+    				</div>
+    			</div>
+	</div></div>
+	  </section>
+    <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="section-counter" data-section="about">
+    	<div class="container">
+    		<div class="row d-flex">
+    			
+    			<div class="col-md-12 col-lg-8 pl-lg-5 py-5" align = "center">
+					
+				
+    			<div class="row justify-content-start pb-3">
+		          <div class="col-md-12 heading-section ftco-animate">
+		            <h3 class="mb-4">All Transactions</h3>
+		          </div>
+		        </div>
+					
+					{% for transaction in orders["transactions"] %}
+		    		<div class="row">
+		          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
+		          </div>
+		          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
+		            <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
+		              <div class="text">
+		                <strong >{{transaction["status"]}}</strong>
+		                <span>status</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
+		            <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
+		              <div class="text">
+		                <strong class="number" >{{transaction['amount']}}</strong>
+		                <span>amount</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
+		          </div>
+		        
+		         
+		        </div>
+				{% endfor %}
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;Sachal Malick <script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.animateNumber.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/scrollax.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/google-map.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+
+  </body>
+</html>
